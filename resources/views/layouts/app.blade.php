@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 	<head>  
 	    <meta charset="utf-8">
@@ -22,9 +22,28 @@
 	    <link rel="icon" type="image/x-png" href="https://www.ablehearing.com/wp-content/uploads/2018/10/bigstock-Ear-hearing-aid-deaf-problem-i-38334637-icon-2.png"> 
 	    <!-- Pode apagar esse link aqui em cima, só coloquei uma imagem pra não ficar sem nada -->
 
+		<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+		<!-- include summernote css/js -->
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
 	</head>
 
 	<body>
+		<style type="text/css">
+			.popover {
+			    position: relative;
+			    top: 0;
+			    left: 0;
+			    display: none;
+			}
+			.note-editing-area {
+				height: 200px;
+			}
+		</style>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
 			<div class="container">
 				{{ link_to_route(
@@ -40,7 +59,7 @@
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active">
-							<a class="nav-link" href="{{ route('home') }}">Home
+							<a class="nav-link" href="{{ route('home') }}">Homsasasae
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -78,7 +97,7 @@
 		</nav>
 
 		<main class="py-4">
-            @yield('conteudo')
+            @yield('content')
         </main>
 
 	</body>

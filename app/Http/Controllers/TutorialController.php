@@ -4,21 +4,22 @@ use Illuminate\Http\Request;
 use App\Models\Tutorial;
 class TutorialController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
         
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // }
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
     public function index()
     {
         //
         $tutoriais = Tutorial::all();
-        return view('tutoriais.index')->with(['tutoriais' => $tutoriais]);
+        return view('index')->compact('tutoriais');
+        // ->with(['tutoriais' => $tutoriais]);
     }
     /**
      * Show the form for creating a new resource.
