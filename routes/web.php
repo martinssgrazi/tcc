@@ -17,5 +17,11 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/tutoriais', 'TutorialController@index')->name('index');
 Route::get('/verUsuarios', 'UserController@index')->name('index');
+
+// Route::get('/tutoriais', 'TutorialController@index')->name('tutotiais.index');
+// Route::get('/tutoriais/create', 'TutorialController@create')->name('tutotiais.create');
+
+Route::resource('tutorials', 'TutorialController');
+
+Route::get('/tutoriais', 'TutorialController@index')->name('tutotiais.index');

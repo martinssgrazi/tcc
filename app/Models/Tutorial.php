@@ -1,8 +1,9 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-class Tutorial extends Model
-{
+class Tutorial extends Model {
+    protected $table = 'tutoriais';
+
     //um tutorial tem muitas paginas
     public function paginas()
     {

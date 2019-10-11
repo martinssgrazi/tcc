@@ -18,7 +18,7 @@ class TutorialController extends Controller
     {
         //
         $tutoriais = Tutorial::all();
-        return view('index')->compact('tutoriais');
+        return view('tutoriais.index', compact('tutoriais'));
         // ->with(['tutoriais' => $tutoriais]);
     }
     /**
@@ -46,9 +46,9 @@ class TutorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tutorial $tutorial)
     {
-        //
+        
     }
     /**
      * Show the form for editing the specified resource.

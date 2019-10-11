@@ -69,9 +69,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
-        foreach ($data['roles'] as $role) {
+        // foreach ($data['roles'] as $role) {
             $user->roles()->attach($role);
-        }
+        // }
 
         
 
