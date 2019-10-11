@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        /*User::truncate();
         $adminRole = Role::where('nome','admin')->first();
         $moderadorRole = Role::where('nome','moderador')->first();
         $alunoRole = Role::where('nome','aluno')->first();
@@ -35,6 +35,6 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('aluno')
         ]
         );
-        $aluno->roles()->attach($alunoRole);
+        $aluno->roles()->attach($alunoRole);*/
     }
 }

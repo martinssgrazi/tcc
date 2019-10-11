@@ -32,7 +32,7 @@ class User extends Authenticatable
     ];
     //um usuario pode conter muitos papeis
     function roles(){
-        return $this->belongsToMany('App\Models\Role');
+        return $this->belongsToMany('App\Models\Role', 'role_user')->withPivot('id');
     }
     //um usuario pode criar vários tutoriais
     //se ele for moderador
