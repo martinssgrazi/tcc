@@ -21,7 +21,8 @@
 						<label for="link">Link</label>
 						<input class="form-control" type="text" name="link" id="link">
 					</div>
-		
+
+				
 					<button type="submit" class="btn btn-primary">
 						Enviar
 					</button>

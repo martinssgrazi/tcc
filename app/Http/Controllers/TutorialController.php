@@ -25,6 +25,10 @@ class TutorialController extends Controller {
         $tutorial->save();
         return redirect(route('tutoriais.index'));
     }
+
+    public function criarConteudo() {
+        return view('tutoriais.criarConteudo');
+    }
     
     public function show(Tutorial $tutorial) {
         //

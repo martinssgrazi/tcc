@@ -70,7 +70,7 @@ class RegisterController extends Controller
         ]);
 
         // foreach ($data['roles'] as $role) {
-            $user->roles()->attach($role);
+            // $user->roles()->attach($role);
         // }
 
         

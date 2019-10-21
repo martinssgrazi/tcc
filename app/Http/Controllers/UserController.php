@@ -16,12 +16,12 @@ class UserController extends Controller
     public function index(User $user)
     {
         //$this->authorize('verUsuarios');
-        if (Gate::allows('verUsuarios')) {
+        /*if (Gate::allows('verUsuarios')) {
             //return '<h1>Autorizado</>';
             $roles = $user->roles();
             return response()->json($roles, 200);
         }
-        return '<h1>Não Autorizado</>';
+        return '<h1>Não Autorizado</>';*/
     }   
 
     /**

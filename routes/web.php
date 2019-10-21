@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/verUsuarios', 'UserController@index')->name('index');
+//Route::get('/verUsuarios', 'UserController@index')->name('index');
 
 // Route::get('/tutoriais', 'TutorialController@index')->name('tutotiais.index');
 // Route::get('/tutoriais/create', 'TutorialController@create')->name('tutotiais.create');
@@ -29,3 +29,5 @@ Route::get('/tutoriais/create', 'TutorialController@create')
 	->name('tutoriais.create');
 Route::post('/tutoriais', 'TutorialController@store')
 	->name('tutoriais.store');
+Route::get('/tutoriais/criarConteudo', 'TutorialController@criarConteudo')
+	->name('tutoriais.criarConteudo');

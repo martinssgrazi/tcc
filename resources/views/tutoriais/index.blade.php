@@ -13,9 +13,10 @@
 				<div class="card-body text-secondary">
 					<p class="card-text">{{ $tutorial->descricao }}</p>
 					<a href="{{ $tutorial->link }}">{{ $tutorial->link }}</a>
+					<a class="btn-primary" role='button' href="{{ route('tutoriais.criarConteudo') }}"> CLICA AQUI</a>
 				</div>
 			</div>
 		</div>
 	@endforeach
 	</div>
-@endsection
+@endsection 

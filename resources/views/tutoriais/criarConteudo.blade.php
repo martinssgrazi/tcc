@@ -1,4 +1,4 @@
-  @extends('layouts.app')
+@extends('layouts.app')
 
 @section('titulo')
     Home
@@ -13,7 +13,6 @@
 	    </div>
         <button type="submit" class="btn btn-success" style="margin-top: 15px; margin-left: 500px;">Enviar</button>
     </form>
-    <a class="btn btn-primary" href="{{ action('UserController@index') }}" role="button">Link</a>
 </div>
 
 @endsection
