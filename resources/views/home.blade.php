@@ -6,10 +6,8 @@
 
 @section('content')
 
-
-
 <div class="container">
-    <form action="#" method="post">
+    <form action="{{ route('tutoriais.store') }}" method="post">
     	<div>
 	        <input type="textarea" name="editordata" class="summernote">
 	    </div>
@@ -17,7 +15,5 @@
     </form>
     <a class="btn btn-primary" href="{{ action('UserController@index') }}" role="button">Link</a>
 </div>
-
-
 
 @endsection

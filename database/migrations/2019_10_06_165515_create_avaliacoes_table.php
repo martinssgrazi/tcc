@@ -30,6 +30,6 @@ class CreateAvaliacoesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliacaos');
+        Schema::dropIfExists('avaliacoes');
     }
 }

@@ -22,6 +22,10 @@ Route::get('/verUsuarios', 'UserController@index')->name('index');
 // Route::get('/tutoriais', 'TutorialController@index')->name('tutotiais.index');
 // Route::get('/tutoriais/create', 'TutorialController@create')->name('tutotiais.create');
 
-Route::resource('tutorials', 'TutorialController');
-
-Route::get('/tutoriais', 'TutorialController@index')->name('tutotiais.index');
+Route::get('/tutoriais', 'TutorialController@index')
+	->middleware('auth')
+	->name('tutoriais.index');
+Route::get('/tutoriais/create', 'TutorialController@create')
+	->name('tutoriais.create');
+Route::post('/tutoriais', 'TutorialController@store')
+	->name('tutoriais.store');

@@ -11,7 +11,7 @@ class CreateTutorialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tutoriais', function (Blueprint $table) {
+        Schema::create('tutorials', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo',255);
             $table->longText('descricao');
@@ -26,6 +26,6 @@ class CreateTutorialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tutoriais');
+        Schema::dropIfExists('tutorials');
     }
 }
