@@ -5,7 +5,7 @@
 	<!-- <div class="jumbotron"></div> -->
 	<div class="container">
       <div class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-12">
               <div class="card">
                   <div class="card-header">Manage users</div>
 
@@ -16,6 +16,7 @@
                               <th scope="col">Nome</th>
                               <th scope="col">Email</th>
                               <th scope="col">Roles</th>
+                              <th scope="col">Ações</th>
   
                             </tr>
                           </thead>
@@ -25,6 +26,11 @@
                                 <th>{{ $user->name }} </th>
                                 <th> {{ $user->email }} </th>
                                 <th> {{ implode(',', $user->roles()->get()->pluck('nome')->toArray()) }} </th>
+                                <th>
+                                    <a href="{{ ('admin.users.edit', $user->id) }}">
+                                        <button type="button" class="btn btn-primary btn-sm">Editar</button>  
+                                    </a>
+                                </th>
                             </tr>
                             @endforeach   
                           </tbody>
