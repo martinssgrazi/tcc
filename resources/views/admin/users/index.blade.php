@@ -27,8 +27,13 @@
                                 <th> {{ $user->email }} </th>
                                 <th> {{ implode(',', $user->roles()->get()->pluck('nome')->toArray()) }} </th>
                                 <th>
-                                    <a href="{{ ('admin.users.edit', $user->id) }}">
-                                        <button type="button" class="btn btn-primary btn-sm">Editar</button>  
+                                    <a href="{{ ('admin.users.edit', $user->id) }}" class="float-left">
+                                        <button type="button" class="btn btn-primary btn-sm">Editar</button> 
+                                        <form action="{{ route('admin.users.destroy'), $user->id) }}" method="POST" class="float-left">
+                                          @csrf
+                                          {{ method_fiel('DELETE') }}
+                                          <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                        </form> 
                                     </a>
                                 </th>
                             </tr>

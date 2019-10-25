@@ -45,7 +45,7 @@ class UserController extends Controller
     public function edit($id)
     {
         if(Auth::user()->id == $id){
-            return redirect()->route('admin.users.index');
+            return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a editar isto.');
         }
 
         return view('admin.users.edit')->with(['user' => User::find($id), 'roles' => Role::all()]);
@@ -60,7 +60,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if(Auth::user()->id == $id){
+            return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a editar isto.');
+        }
+
+        $user = User::find($id);
+        $user->roles()->sync($request->roles);
+
+        return redirect()->route('admin.users.index')->with('success', 'Usuário foi atualizado.');
+
     }
 
     /**
@@ -69,8 +77,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        if(Auth::user()->id == $id){
+            return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a deletar isto.');
+        }
+        User::destroy($id);
+        return redirect()->route('admin.users.index')->with('success', 'Usuário foi deletado.');
     }
 }
