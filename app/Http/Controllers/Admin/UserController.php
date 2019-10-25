@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\User;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\Controller;
+use App\User;
 
 class UserController extends Controller
 {
@@ -15,13 +16,7 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
-        //$this->authorize('verUsuarios');
-        /*if (Gate::allows('verUsuarios')) {
-            //return '<h1>Autorizado</>';
-            $roles = $user->roles();
-            return response()->json($roles, 200);
-        }
-        return '<h1>Não Autorizado</>';*/
+        return view('admin.users.index')->with('users', User::all());
     }   
 
     /**
@@ -29,21 +24,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
     /**
      * Display the specified resource.
@@ -51,10 +32,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

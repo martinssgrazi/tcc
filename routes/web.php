@@ -26,8 +26,13 @@ Route::get('/tutoriais', 'TutorialController@index')
 	->middleware('auth')
 	->name('tutoriais.index');
 Route::get('/tutoriais/create', 'TutorialController@create')
-	->name('tutoriais.create');
+	->name('tutoriais.create')->middleware(['auth', 'auth.admin']);
 Route::post('/tutoriais', 'TutorialController@store')
 	->name('tutoriais.store');
 Route::get('/tutoriais/criarConteudo', 'TutorialController@criarConteudo')
-	->name('tutoriais.criarConteudo');
+	->name('tutoriais.criarConteudo')->middleware(['auth', 'auth.admin']);
+
+	
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
+	Route::resource('users', 'UserController', ['except' => ['show', 'create', 'store']]);
+});

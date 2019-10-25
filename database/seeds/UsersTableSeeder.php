@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Models\Role;
+use App\Role;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -11,16 +11,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        /*User::truncate();
+        User::truncate();
         $adminRole = Role::where('nome','admin')->first();
         $moderadorRole = Role::where('nome','moderador')->first();
         $alunoRole = Role::where('nome','aluno')->first();
+
+
         $admin = User::create([
             'name'=>'admin',
             'email'=>'admin@teste.com',
             'password'=>bcrypt('admin')
-        ]
-        );
+        ]);
+
         $admin->roles()->attach($adminRole);
         $moderador = User::create([
             'name'=>'moderador',
@@ -35,6 +37,6 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('aluno')
         ]
         );
-        $aluno->roles()->attach($alunoRole);*/
+        $aluno->roles()->attach($alunoRole);
     }
 }

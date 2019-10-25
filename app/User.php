@@ -31,8 +31,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     //um usuario pode conter muitos papeis
-    function roles(){
-        return $this->belongsToMany('App\Models\Role', 'role_user')->withPivot('id');
+    public function roles(){
+        return $this->belongsToMany('App\Role', 'role_user')->withPivot('id');
+    }
+
+    public function hasAnyRoles($roles){
+        return null !== $this->roles()->whereIn('nome', $roles)->first(); 
+    }
+
+    public function hasAnyRole($role){
+        return null !== $this->roles()->where('nome', $role)->first(); 
     }
     //um usuario pode criar vários tutoriais
     //se ele for moderador
