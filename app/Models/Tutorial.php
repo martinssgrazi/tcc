@@ -2,7 +2,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Tutorial extends Model {
-    // protected $table = 'tutoriais';
+    protected $table = 'tutoriais';
+    
     protected $fillable = ['id','titulo','descricao','link'];
     //um tutorial tem muitas paginas
     public function paginas()

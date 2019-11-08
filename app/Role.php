@@ -7,6 +7,6 @@ class Role extends Model
     //um papel pode conter muitos usuarios
     public function users()
     {
-        return $this->belongsToMany('App\User', 'role_user')->withPivot('id');
+        return $this->belongsToMany('App\User')->withPivot('id')->withTimestamps();
     }
 }

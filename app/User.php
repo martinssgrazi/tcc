@@ -32,7 +32,7 @@ class User extends Authenticatable
     ];
     //um usuario pode conter muitos papeis
     public function roles(){
-        return $this->belongsToMany('App\Role', 'role_user')->withPivot('id');
+        return $this->belongsToMany('App\Role')->withPivot('id')->withTimestamps();
     }
 
     public function hasAnyRoles($roles){

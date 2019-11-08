@@ -20,9 +20,11 @@ class CreateTentativasTable extends Migration
          */
         Schema::create('tentativas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamp('data_fim');
             $table->string('respostas');
             $table->integer('pergunta_atual');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

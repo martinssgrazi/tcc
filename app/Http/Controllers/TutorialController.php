@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Estudo;
 use Illuminate\Http\Request;
 use App\Models\Tutorial;
 class TutorialController extends Controller {
@@ -21,8 +23,15 @@ class TutorialController extends Controller {
     
     public function store(Request $request) {
         $tutorial = new Tutorial();
+
+        $user = Auth::id();
+        $estudo = Estudo::where('user_id', $user)->first();
+        
         $tutorial->fill($request->all());
+        $tutorial->user_id = $user;
+        $tutorial->estudos_id = $estudo->id;
         $tutorial->save();
+        
         return redirect(route('tutoriais.index'));
     }
 

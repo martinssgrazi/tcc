@@ -18,8 +18,10 @@ class CreatePerguntasTable extends Migration
          */
         Schema::create('perguntas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('avaliacao_id');
             $table->string('enunciado', 1000);
             $table->integer('correta')->unsigned();
+            $table->foreign('avaliacao_id')->references('id')->on('avaliacoes');
             $table->timestamps();
         });
     }

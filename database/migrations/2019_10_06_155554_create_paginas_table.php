@@ -19,8 +19,10 @@ class CreatePaginasTable extends Migration
          */
         Schema::create('paginas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo',1000);
+            $table->unsignedBigInteger('tutorial_id');
+            $table->string('titulo', 1000);
             $table->longText('conteudo');
+            $table->foreign('tutorial_id')->references('id')->on('tutoriais');
             $table->timestamps();
         });
     }

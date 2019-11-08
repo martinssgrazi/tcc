@@ -18,8 +18,12 @@ class CreateAvaliacoesTable extends Migration
          */
         Schema::create('avaliacoes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('tutorial_id');
+            $table->unsignedBigInteger('tentativa_id');
             $table->string('titulo', 255);
             $table->string('descricao', 255);
+            $table->foreign('tutorial_id')->references('id')->on('tutoriais');
+            $table->foreign('tentativa_id')->references('id')->on('tentativas');
             $table->timestamps();
         });
     }

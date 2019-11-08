@@ -21,8 +21,10 @@ class CreateEstudosTable extends Migration
         
         Schema::create('estudos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('pagina_atual')->unsigned();
             $table->timestamp('data_fim')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

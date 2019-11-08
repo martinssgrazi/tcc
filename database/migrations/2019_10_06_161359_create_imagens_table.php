@@ -20,7 +20,9 @@ class CreateImagensTable extends Migration
         
         Schema::create('imagens', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('pagina_id');
             $table->string('caminho',255);
+            $table->foreign('pagina_id')->references('id')->on('paginas');
             $table->timestamps();
         });
     }
