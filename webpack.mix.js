@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +12,21 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.webpackConfig({
+   resolve: {
+      alias: { jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js') }
+   },
+   plugins: [
+      // ProvidePlugin helps to recognize $ and jQuery words in code
+      // And replace it with require('jquery')
+      new webpack.ProvidePlugin({
+         $: 'jquery',
+         jQuery: 'jquery'
+      })
+   ]
+});
+
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.copyDirectory('resources/assets/img', 'public/img');

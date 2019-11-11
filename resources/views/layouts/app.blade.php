@@ -32,7 +32,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <a href="{{ route('admin.users.index')}}">Manage users</a>
+                            <a class="btn btn-dark" href="{{ route('admin.users.index')}}">Manage users</a>
                         </li>
                     </ul>
 

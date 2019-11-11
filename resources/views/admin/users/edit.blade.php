@@ -10,15 +10,15 @@
                   <div class="card-header">Manage {{ $user->name }}</div>
 
                   <div class="card-body">
-                     <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST"  >
+                     <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST">
                         @csrf
-                        {{ method_field('PUT') }}
                         @foreach($roles as $role)
                           <div class="form-check">
                               <input type="checkbox" name="roles[]" value="{{ $role->id }}" 
-                                  {{ $user->hasAnyRole($role->name)?'checked':''}}>
-                              <label>{{ $role->name</label>    
-                          </div> 
+                                  {{ $user->hasAnyRole($role->nome) ? 'checked':'' }}>
+                              <label>{{ $role->nome }}</label>    
+                          </div>
+                          {{ method_field('PUT') }} 
                           @endforeach
                         <button type="submit" class="btn btn-primary"> Atualizar dados</button> 
                      </form>

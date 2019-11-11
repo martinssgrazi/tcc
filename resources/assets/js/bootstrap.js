@@ -30,7 +30,10 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 // });
 
 try {
-    // window.$ = window.jQuery = require("jquery");
-    // require("bootstrap-sass/assets/javascripts/bootstrap");
-    // require("summernote");
-} catch (e) {}
+    window.$ = window.jQuery = require('jquery');
+    require("bootstrap-sass");
+    require('summernote');
+
+} catch (e) {
+    console.log(e);
+}

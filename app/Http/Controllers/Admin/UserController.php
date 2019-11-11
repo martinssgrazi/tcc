@@ -60,11 +60,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if(Auth::user()->id == $id){
+        if(Auth::user()->id == $user->id){
             return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a editar isto.');
         }
 
-        $user = User::find($id);
         $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index')->with('success', 'Usuário foi atualizado.');

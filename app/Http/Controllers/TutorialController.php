@@ -25,11 +25,11 @@ class TutorialController extends Controller {
         $tutorial = new Tutorial();
 
         $user = Auth::id();
-        $estudo = Estudo::where('user_id', $user)->first();
+        // $estudo = Estudo::where('user_id', $user)->first();
         
         $tutorial->fill($request->all());
         $tutorial->user_id = $user;
-        $tutorial->estudos_id = $estudo->id;
+        // $tutorial->estudos_id = $estudo->id;
         $tutorial->save();
         
         return redirect(route('tutoriais.index'));

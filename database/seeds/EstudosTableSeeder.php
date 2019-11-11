@@ -12,9 +12,7 @@ class EstudosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Estudo::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Estudo::create(['user_id' => 1, 'pagina_atual' => 1]);
         Estudo::create(['user_id' => 2, 'pagina_atual' => 1]);
