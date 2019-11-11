@@ -6,11 +6,11 @@ class Pagina extends Model
     //uma pagina pertence a um tutorial
     public function tutorial()
     {
-        return $this->belongsTo('App\Tutorial');
+        return $this->belongsTo('App\Models\Tutorial');
     }
     //uma pagina contem muitas imagens
     public function imagens()
     {
-        return $this->hasMany('App\Imagem');
+        return $this->hasMany('App\Models\Imagem');
     }
 }

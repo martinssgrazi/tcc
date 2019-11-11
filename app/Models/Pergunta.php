@@ -6,11 +6,11 @@ class Pergunta extends Model
     //uma pergunta pertence a uma avaliacao
     public function avaliacao()
     {
-        return $this->belongsTo('App\Avaliacao');
+        return $this->belongsTo('App\Models\Avaliacao');
     }
     //uma pergunta contém várias respostas.
     public function respostas()
     {
-        return $this->hasMany('App\Resposta');
+        return $this->hasMany('App\Models\Resposta');
     }
 }

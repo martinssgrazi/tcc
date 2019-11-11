@@ -3,6 +3,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -46,16 +47,16 @@ class User extends Authenticatable
     //se ele for moderador
     public function tutoriais()
     {
-        return $this->hasMany('App\Tutorial');
+        return $this->hasMany('App\Models\Tutorial');
     }
     //um usuario pode estudar varios tutoriais
     public function estudos()
     {
-        return $this->hasMany('App\Estudo');
+        return $this->hasMany('App\Models\Estudo');
     }
     public function tentativas()
     {
-        return $this->hasMany('App\Tentativa');
+        return $this->hasMany('App\Models\Tentativa');
     }
-    
+
 }

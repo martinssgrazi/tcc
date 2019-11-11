@@ -8,7 +8,7 @@ class Tutorial extends Model {
     //um tutorial tem muitas paginas
     public function paginas()
     {
-        return $this->hasMany('App\Pagina');
+        return $this->hasMany('App\Models\Pagina');
     }
     //um tutorial eh criado por um usuario
     //com papel de moderador (deve ser verificado no momento
@@ -21,6 +21,6 @@ class Tutorial extends Model {
     //muitos usuarios
     public function estudos()
     {
-        return $this->hasMany('App\Estudo');
+        return $this->hasMany('App\Models\Estudo');
     }
 }

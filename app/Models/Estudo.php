@@ -10,6 +10,6 @@ class Estudo extends Model
     }
     public function tutorial()
     {
-        return $this->belongsTo('App\Tutorial');
+        return $this->belongsTo('App\Models\Tutorial');
     }
 }

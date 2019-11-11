@@ -10,6 +10,6 @@ class Tentativa extends Model
     }
     public function avaliacao()
     {
-        return $this->belongsTo('App\Avaliacao');
+        return $this->belongsTo('App\Models\Avaliacao');
     }
 }

@@ -6,6 +6,6 @@ class Resposta extends Model
     //uma resposta pertence a uma pergunta
     public function pergunta()
     {
-        return $this->belongsTo('App\Pergunta');
+        return $this->belongsTo('App\Models\Pergunta');
     }
 }

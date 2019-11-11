@@ -6,6 +6,6 @@ class Imagem extends Model
     //uma imagem pertence a uma pagina
     public function pagina()
     {
-        return $this->belongsTo('App\Pagina');
+        return $this->belongsTo('App\Models\Pagina');
     }
 }
