@@ -24,7 +24,7 @@ class CreateEstudosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('pagina_atual')->unsigned();
             $table->timestamp('data_fim')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

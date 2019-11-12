@@ -18,7 +18,7 @@ class CreateTutorialsTable extends Migration
             $table->string('titulo',255);
             $table->longText('descricao');
             $table->string('link');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // $table->foreign('estudos_id')->references('id')->on('estudos');
             $table->timestamps();
         });

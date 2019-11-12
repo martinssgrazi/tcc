@@ -42,7 +42,7 @@ class TutorialController extends Controller {
     // }
     
     public function show(Tutorial $tutorial) {
-        $paginas = $tutorial->paginas()->paginate(5);
+        $paginas = $tutorial->paginas()->paginate(1);
         return view('tutoriais.show')->with(['tutorial' => $tutorial, 'paginas' => $paginas]);
     }
     

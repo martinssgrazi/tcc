@@ -60,8 +60,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if(Auth::user()->id == $user->id){
-            return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a editar isto.');
+        $isAdmin = Auth::user()->hasAnyRole('admin');
+        $adminRole = Role::where('nome', 'admin')->first()->id;
+
+        if($request->roles == null ) {
+            return redirect()->route('admin.users.index')->with('warning', 'Adicione uma role para '.$user->name);
+        }
+        
+        $hasAdminRole = in_array($adminRole, $request->roles);
+
+        if(!$isAdmin && ($hasAdminRole || !$hasAdminRole) ) {
+            return redirect()->route('admin.users.index')->with('warning', 'Você não tem privilegios de Administrador.');
         }
 
         $user->roles()->sync($request->roles);
@@ -78,9 +87,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->id == $id){
+        $isAdmin = Auth::user()->hasAnyRole('admin');
+        $user = User::find($id);
+        
+        if(Auth::user()->id == $id || (!$isAdmin && $user->hasAnyRole('admin'))){
             return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a deletar isto.');
         }
+        
         User::destroy($id);
         return redirect()->route('admin.users.index')->with('success', 'Usuário foi deletado.');
     }
