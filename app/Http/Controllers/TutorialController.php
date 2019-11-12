@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Estudo;
 use Illuminate\Http\Request;
 use App\Models\Tutorial;
+use App\Models\Pagina;
+
 class TutorialController extends Controller {
     
     // public function __construct()
@@ -35,12 +37,13 @@ class TutorialController extends Controller {
         return redirect(route('tutoriais.index'));
     }
 
-    public function criarConteudo() {
-        return view('tutoriais.criarConteudo');
-    }
+    // public function criarConteudo() {
+    //     return view('tutoriais.criarConteudo');
+    // }
     
     public function show(Tutorial $tutorial) {
-        //
+        $paginas = $tutorial->paginas()->paginate(5);
+        return view('tutoriais.show')->with(['tutorial' => $tutorial, 'paginas' => $paginas]);
     }
     
     public function edit($id) {
