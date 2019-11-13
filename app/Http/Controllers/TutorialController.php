@@ -8,11 +8,16 @@ use App\Models\Pagina;
 
 class TutorialController extends Controller {
     
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-        
-    // }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('check.tutorial', ['except' => ['index', 'show', 'create', 'store']]);
+    }
+
     public function index() {
         $tutoriais = Tutorial::all();
         return view('tutoriais.index', compact('tutoriais'));
@@ -46,15 +51,15 @@ class TutorialController extends Controller {
         return view('tutoriais.show')->with(['tutorial' => $tutorial, 'paginas' => $paginas]);
     }
     
-    public function edit($id) {
+    public function edit(Tutorial $tutorial) {
         //
     }
     
-    public function update(Request $request, $id) {
+    public function update(Request $request, Tutorial $tutorial) {
         //
     }
    
-    public function destroy($id) {
+    public function destroy(Tutorial $tutorial) {
         //
     }
 }

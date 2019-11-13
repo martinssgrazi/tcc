@@ -13,7 +13,7 @@ class Tutorial extends Model {
     //um tutorial eh criado por um usuario
     //com papel de moderador (deve ser verificado no momento
     //da criação) 
-    public function criador()
+    public function user ()
     {
         return $this->belongsTo('App\User');
     }

@@ -14,8 +14,9 @@
 							<div class="card-header">{{ $tutorial->titulo }}</div>
 							<div class="card-body text-secondary">
 								<p class="card-text">{{ $tutorial->descricao }}</p>
+								<p class="card-text blockquote-footer">Criado por <cite>{{ $tutorial->user->name }}</cite></p>
 								<a href="{{ $tutorial->link }}">{{ $tutorial->link }}</a>
-								<a class="btn btn-primary" role='button' href="{{ route('tutoriais.show', $tutorial->id) }}"> CLICA AQUI</a>
+								<a class="btn btn-primary" role='button' href="{{ route('tutoriais.show', $tutorial->id) }}"> Visualizar Tutorial</a>
 							</div>
 						</div>
 					</div>

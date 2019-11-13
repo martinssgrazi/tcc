@@ -15,29 +15,32 @@
 Route::get('/', function () {
   return view('auth.login');
 });
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/verUsuarios', 'UserController@index')->name('index');
 
-// Route::get('/tutoriais', 'TutorialController@index')->name('tutotiais.index');
-// Route::get('/tutoriais/create', 'TutorialController@create')->name('tutotiais.create');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('/{username}/profile')->group(function () {
+	Route::get('/', 'ProfileUsersController@show')->name('profile.show');
+	Route::put('/edit', 'ProfileUsersController@update')->name('profile.update');
+	Route::delete('/', 'ProfileUsersController@destroy')->name('profile.destroy');
+});
 
 Route::get('/tutoriais', 'TutorialController@index')
 	->middleware('auth')
 	->name('tutoriais.index');
 
 Route::get('/tutoriais/create', 'TutorialController@create')
-	->name('tutoriais.create')->middleware(['auth', 'auth.admin']);
+	->name('tutoriais.create')
+	->middleware(['auth', 'auth.admin']);
 
 Route::post('/tutoriais', 'TutorialController@store')
-	->name('tutoriais.store');
-
-Route::get('/tutoriais/criarConteudo', 'TutorialController@criarConteudo')
-	->name('tutoriais.criarConteudo')->middleware(['auth', 'auth.admin']);
+	->name('tutoriais.store')
+	->middleware(['auth', 'auth.admin']);
 
 Route::get('/tutoriais/{tutorial}', 'TutorialController@show')
-	->middleware('auth')
-	->name('tutoriais.show');
+	->name('tutoriais.show')
+	->middleware('auth');
 
 Route::resource('/tutoriais/{tutorial}/paginas', 'PaginasController')->middleware(['auth']);
 

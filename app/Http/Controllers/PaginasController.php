@@ -8,6 +8,17 @@ use App\Models\Pagina;
 
 class PaginasController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('check.tutorial', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -11,12 +11,24 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('manage.users', ['except' => ['index']]);
+        $this->middleware('check.roles', ['except' => ['index', 'edit']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index()
     {
         return view('admin.users.index')->with('users', User::all());
     }   
@@ -42,13 +54,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        if(Auth::user()->id == $id){
-            return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a editar isto.');
-        }
-
-        return view('admin.users.edit')->with(['user' => User::find($id), 'roles' => Role::all()]);
+        return view('admin.users.edit')->with(['user' => $user, 'roles' => Role::all()]);
     }
 
     /**
@@ -60,23 +68,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $isAdmin = Auth::user()->hasAnyRole('admin');
-        $adminRole = Role::where('nome', 'admin')->first()->id;
-
-        if($request->roles == null ) {
-            return redirect()->route('admin.users.index')->with('warning', 'Adicione uma role para '.$user->name);
-        }
-        
-        $hasAdminRole = in_array($adminRole, $request->roles);
-
-        if(!$isAdmin && ($hasAdminRole || !$hasAdminRole) ) {
-            return redirect()->route('admin.users.index')->with('warning', 'Você não tem privilegios de Administrador.');
-        }
-
         $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index')->with('success', 'Usuário foi atualizado.');
-
     }
 
     /**
@@ -85,16 +79,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $isAdmin = Auth::user()->hasAnyRole('admin');
-        $user = User::find($id);
-        
-        if(Auth::user()->id == $id || (!$isAdmin && $user->hasAnyRole('admin'))){
-            return redirect()->route('admin.users.index')->with('warning', 'Você não está permitido a deletar isto.');
-        }
-        
-        User::destroy($id);
+        User::destroy($user->id);
         return redirect()->route('admin.users.index')->with('success', 'Usuário foi deletado.');
     }
 }
