@@ -13,7 +13,11 @@
 
 
 Route::get('/', function () {
-  return view('auth.login');
+	if(Auth::check()) {
+		return redirect()->route('home');
+	}
+
+	return view('auth.login');
 });
 
 Auth::routes();
@@ -26,23 +30,11 @@ Route::prefix('/{username}/profile')->group(function () {
 	Route::delete('/', 'ProfileUsersController@destroy')->name('profile.destroy');
 });
 
-Route::get('/tutoriais', 'TutorialController@index')
-	->middleware('auth')
-	->name('tutoriais.index');
+Route::resource('tutoriais', 'TutorialController', ['parameters' => [
+	'tutoriais' => 'tutorial',
+]]);
 
-Route::get('/tutoriais/create', 'TutorialController@create')
-	->name('tutoriais.create')
-	->middleware(['auth', 'auth.admin']);
-
-Route::post('/tutoriais', 'TutorialController@store')
-	->name('tutoriais.store')
-	->middleware(['auth', 'auth.admin']);
-
-Route::get('/tutoriais/{tutorial}', 'TutorialController@show')
-	->name('tutoriais.show')
-	->middleware('auth');
-
-Route::resource('/tutoriais/{tutorial}/paginas', 'PaginasController')->middleware(['auth']);
+Route::resource('/tutoriais/{tutorial}/paginas', 'PaginasController');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
 	Route::resource('users', 'UserController', ['except' => ['show', 'create', 'store']]);

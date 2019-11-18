@@ -15,11 +15,13 @@ class TutorialController extends Controller {
      */
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('auth.admin', ['except' => ['index', 'show']]);
         $this->middleware('check.tutorial', ['except' => ['index', 'show', 'create', 'store']]);
     }
 
     public function index() {
-        $tutoriais = Tutorial::all();
+        $tutoriais = Auth::user()->tutoriais()->get();
         return view('tutoriais.index', compact('tutoriais'));
         // ->with(['tutoriais' => $tutoriais]);
     }
@@ -52,7 +54,7 @@ class TutorialController extends Controller {
     }
     
     public function edit(Tutorial $tutorial) {
-        //
+        return view('tutoriais.edit')->with(['tutorial' => $tutorial]);
     }
     
     public function update(Request $request, Tutorial $tutorial) {

@@ -30,11 +30,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li>
-                            <a class="btn btn-dark" href="{{ route('admin.users.index')}}">Manage users</a>
-                        </li>
-                    </ul>
+                    @if(Auth::check() && Auth::user()->hasAnyRoles(['admin', 'moderador']))
+                        <ul class="navbar-nav mr-auto">
+                            <li>
+                                <a class="btn btn-dark" href="{{ route('admin.users.index')}}">Gerenciar Usuários</a>
+                            </li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -49,32 +51,34 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                {{ link_to_route(
-                                'tutoriais.create',
-                                'Criar Tutorial',
-                                [],
-                                ['class' => 'nav-link']) }}
-                            </li>
+                            @if(Auth::check() && Auth::user()->hasAnyRoles(['admin', 'moderador']))
+                                <li class="nav-item">
+                                    {{ link_to_route(
+                                    'tutoriais.index',
+                                    'Meus Tutoriais',
+                                    [],
+                                    ['class' => 'nav-link']) }}
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->name) }}">
+                                        {{ __('Ver Perfil') }}
+                                    </a>
+                                    <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Sair') }} <i class="fas fa-sign-out-alt"></i>
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-
-                                    <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->name) }}">
-                                        {{ __('Ver Perfil') }}
-                                    </a>
                                 </div>
                             </li>
                         @endguest

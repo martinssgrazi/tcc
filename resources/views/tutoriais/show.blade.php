@@ -19,15 +19,17 @@
                     <div class="card-header">
                         <h3>{{ $pagina->titulo }}</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body table-responsive-sm">
                         {!!$pagina->conteudo !!}
                     </div>
                 </div>
             @endforeach
         @endif
-        <div class="d-flex justify-content-center">
-            <a href="{{ route('paginas.create', $tutorial->id) }}" class="mt-3 btn btn-primary">Adicionar Página</a>
-        </div>
+        @if(Auth::id() == $tutorial->user_id)
+            <div class="d-flex justify-content-center mb-3">
+                <a href="{{ route('paginas.create', $tutorial->id) }}" class="mt-3 btn btn-primary">Adicionar Página</a>
+            </div>
+        @endif
         {{ $paginas->links() }}
     </div>
         

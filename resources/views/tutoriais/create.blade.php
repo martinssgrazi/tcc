@@ -3,9 +3,9 @@
 @section('content')
 	<!-- <div class="jumbotron"></div> -->
 	<div class="container-fluid">
-		<h1>Criar tutorial</h1>
+		<h1 class="text-center">Criar tutorial</h1>
 		<div class="form-group row justify-content-center">
-			<div class="col-6">
+			<div class="col-10">
 				<form method="post" action="{{ route('tutoriais.store') }}" role="form">
 					@csrf
 					<div class="form-group">

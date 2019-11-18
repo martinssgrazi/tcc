@@ -5,12 +5,12 @@
   <!-- <div class="jumbotron"></div> -->
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-12">
+      <div class="col-md-12 col-sm-12">
           <div class="card">
               <div class="card-header">Manage users</div>
 
               <div class="card-body">
-                <table class="table">
+                <table class="table table-responsive-md">
                   <thead>
                     <tr>
                       <th scope="col">Nome</th>
@@ -26,14 +26,14 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ implode(', ', $user->roles()->get()->pluck('nome')->toArray()) }}</td>
                         <td>
-                            <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
-                                <button type="button" class="btn btn-primary btn-sm ml-3"><i class="fas fa-user-edit"></i></button> 
-                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="float-left">
-                                  @csrf
-                                    {{ method_field('DELETE') }}
-                                  <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </form> 
-                            </a>
+                          <div class="d-flex justify-content-center flex-wrap">
+                            <a href="{{ route('admin.users.edit', $user->id) }}" class="mb-2 ml-2 btn btn-primary btn-sm"><i class="fas fa-user-edit"></i></a>
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="ml-2">
+                              @csrf
+                                {{ method_field('DELETE') }}
+                              <button type="submit" class="btn btn-danger btn-sm w-100"><i class="fas fa-trash"></i></button>
+                            </form> 
+                          </div>
                         </td>
                       </tr>
                     @endforeach   

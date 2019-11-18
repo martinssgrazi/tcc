@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $tutoriais = Tutorial::all();
-        return view('tutoriais.index', compact('tutoriais'));
+        return view('home', compact('tutoriais'));
     }
 }
