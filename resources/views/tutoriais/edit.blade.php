@@ -6,7 +6,7 @@
         <h1 class="text-center">{{ $tutorial->titulo }}</h1>
 		<div class="form-group row justify-content-center">
 			<div class="col-10">
-				<form method="post" action="{{ route('tutoriais.store') }}" role="form">
+				<form method="post" action="{{ route('tutoriais.update', $tutorial->id) }}" role="form">
 					@csrf
 					<div class="form-group">
                         <label for="titulo">Título:</label>

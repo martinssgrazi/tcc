@@ -3,6 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Pagina extends Model
 {
+    protected $fillable = ['titulo', 'conteudo'];
     //uma pagina pertence a um tutorial
     public function tutorial()
     {

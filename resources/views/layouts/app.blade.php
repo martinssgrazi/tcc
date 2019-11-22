@@ -33,7 +33,7 @@
                     @if(Auth::check() && Auth::user()->hasAnyRoles(['admin', 'moderador']))
                         <ul class="navbar-nav mr-auto">
                             <li>
-                                <a class="btn btn-dark" href="{{ route('admin.users.index')}}">Gerenciar Usuários</a>
+                                <a class="btn btn-secondary" href="{{ route('admin.users.index')}}">Gerenciar Usuários</a>
                             </li>
                         </ul>
                     @endif

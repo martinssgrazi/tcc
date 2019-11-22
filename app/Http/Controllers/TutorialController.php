@@ -58,7 +58,15 @@ class TutorialController extends Controller {
     }
     
     public function update(Request $request, Tutorial $tutorial) {
-        //
+        $request->validate([
+            'titulo' => 'required',
+            'descricao' => 'required',
+            'link' => 'required'
+        ]);
+
+        $tutorial->fill($request->all());
+        $tutorial->update();
+        return redirect()->route('tutoriais.show', $tutorial->id)->with(['success' => 'Atualizado!']);
     }
    
     public function destroy(Tutorial $tutorial) {

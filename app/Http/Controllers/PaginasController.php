@@ -76,9 +76,9 @@ class PaginasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tutorial $tutorial, Pagina $pagina)
     {
-        //
+        return view('tutoriais.paginas.edit')->with(['tutorial' => $tutorial, 'pagina' => $pagina]);
     }
 
     /**
@@ -88,9 +88,16 @@ class PaginasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tutorial $tutorial, Pagina $pagina)
     {
-        //
+        $request->validate([
+            'titulo' => 'required',
+            'conteudo' => 'required'
+        ]);
+
+        $pagina->fill($request->all());
+        $pagina->update();
+        return redirect()->route('tutoriais.show', $tutorial->id)->with(['success' => 'Atualizado!']);
     }
 
     /**

@@ -23,6 +23,9 @@
                         {!!$pagina->conteudo !!}
                     </div>
                 </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="{{ route('paginas.edit', [$tutorial->id, $pagina->id]) }}" class="mt-3 btn btn-warning">Editar Página</a>
+                </div>
             @endforeach
         @endif
         @if(Auth::id() == $tutorial->user_id)
