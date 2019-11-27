@@ -26,7 +26,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ implode(', ', $user->roles()->get()->pluck('nome')->toArray()) }}</td>
                         <td>
-                          <div class="d-flex justify-content-center flex-wrap">
+                          <div class="d-flex justify-content">
                             <a href="{{ route('admin.users.edit', $user->id) }}" class="mb-2 ml-2 btn btn-primary btn-sm"><i class="fas fa-user-edit"></i></a>
                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="ml-2">
                               @csrf

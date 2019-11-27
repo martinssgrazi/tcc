@@ -5,6 +5,7 @@ use App\Models\Estudo;
 use Illuminate\Http\Request;
 use App\Models\Tutorial;
 use App\Models\Pagina;
+use RealRashid\SweetAlert\Facades\Alert as Alert;
 
 class TutorialController extends Controller {
     
@@ -16,7 +17,7 @@ class TutorialController extends Controller {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('auth.admin', ['except' => ['index', 'show']]);
+        $this->middleware('auth.admin', ['except' => ['show']]);
         $this->middleware('check.tutorial', ['except' => ['index', 'show', 'create', 'store']]);
     }
 
@@ -66,10 +67,13 @@ class TutorialController extends Controller {
 
         $tutorial->fill($request->all());
         $tutorial->update();
-        return redirect()->route('tutoriais.show', $tutorial->id)->with(['success' => 'Atualizado!']);
+        Alert::success('Tutorial Atualizado com sucesso!', 'O tutorial foi atualizado!');
+        return redirect()->route('tutoriais.show', $tutorial->id);
     }
    
     public function destroy(Tutorial $tutorial) {
-        //
+        $tutorial->delete();
+        Alert::success('Tutorial Excluido com sucesso!', 'O tutorial foi excluido!');
+        return redirect()->route('tutoriais.index');
     }
 }

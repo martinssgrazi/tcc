@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container">	
-		<h1>Tutoriais</h1>
+		<h1 class="text-center">Tutoriais</h1>
 
 		@if(count($tutoriais) < 1)
 			<h3 class="d-flex justify-content-center">Não há tutoriais disponiveis</h3>

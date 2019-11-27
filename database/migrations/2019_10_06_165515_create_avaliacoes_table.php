@@ -22,7 +22,7 @@ class CreateAvaliacoesTable extends Migration
             $table->unsignedBigInteger('tentativa_id');
             $table->string('titulo', 255);
             $table->string('descricao', 255);
-            $table->foreign('tutorial_id')->references('id')->on('tutoriais');
+            $table->foreign('tutorial_id')->references('id')->on('tutoriais')->onDelete('cascade');
             $table->foreign('tentativa_id')->references('id')->on('tentativas');
             $table->timestamps();
         });

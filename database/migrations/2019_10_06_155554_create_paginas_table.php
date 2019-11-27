@@ -22,7 +22,7 @@ class CreatePaginasTable extends Migration
             $table->unsignedBigInteger('tutorial_id');
             $table->string('titulo', 1000);
             $table->longText('conteudo');
-            $table->foreign('tutorial_id')->references('id')->on('tutoriais');
+            $table->foreign('tutorial_id')->references('id')->on('tutoriais')->onDelete('cascade');
             $table->timestamps();
         });
     }
